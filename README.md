@@ -14,3 +14,6 @@ matplotlib - for analyzing performance differences in changing agent values
 pandas & numpy - used for dataFrame storage and array search/manipulation in agent's value table
 > pip intall numpy <br/>
 > pip install pandas
+
+### Initial findings:
+![alt text](https://github.com/Wonseokkyang/RLMaze/maze_results/5x5/together.jpg?raw=true)
