@@ -2,7 +2,6 @@ __pycache__
 .vscode
 agentHistory.txt
 mazeOut.txt
-maze_results/
 maze/r*
 maze/rotate.py
 

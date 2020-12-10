@@ -33,7 +33,6 @@ from graphics import *
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-import threading
 
 #for demo only, continues from saved csv file
 DEMO = False
