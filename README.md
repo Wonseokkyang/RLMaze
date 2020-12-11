@@ -1,7 +1,12 @@
 # Reinforced Learning Maze
 Author: Won Seok Yang
 
+![alt text](https://github.com/Wonseokkyang/RLMaze/blob/master/maze_results/5x5/5x5_n%3D0_i%3D0.gif?raw=true)
+
+
 First attempt in creating a machine learning agent using reinforced learning and first standalone project using python. The agent starts with no knowlege of the maze environment and relys on new experiences to learn the best action to take in any given state.
+
+From this project I learned many new things including the importance of correctly defining markov states, dataFrames, reward function application and much more.
 
 ### libraries used:
 graphics - for graphical display of agent and maze environment <br/>
@@ -41,3 +46,14 @@ The result of different alpha values in the 5x5 maze was not as decisive as I th
 ![alt text](https://github.com/Wonseokkyang/RLMaze/blob/master/maze_results/11x11/Comparison_of_different_Alpha_values.png?raw=true) <br/>
 This environment is 4x larger and provided a clearer picture for the relationship bewteen alpha value and performance. With the larger environment, we can clearly see that the alpha value of 0.9 preformed better than a value of 0.2.
 
+GIF of agent intelligence after solving the 5x5 maze 100 times. <br/>
+![alt text](https://github.com/Wonseokkyang/RLMaze/blob/master/maze_results/5x5/5x5_n%3D0_i%3D100.gif?raw=true)
+```
+Iteration count:    100
+alpha:              0.9
+gamma:              0.9
+epsilon:            0.9
+```
+
+### N-Step look ahead:
+After 
