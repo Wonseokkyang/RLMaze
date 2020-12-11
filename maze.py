@@ -12,10 +12,10 @@
 #   Agent will start the maze on (0,0)top left and try to reach
 #   target at (numberOfRows-1, numberOfCols-1)bottom right
 #
-#   Green rectangle:    walls [reward = ?]
-#   Yellow rectangle:    open space [reward = ?]
-#   Blue  oval:          agent/explorer
-#   Purple rectangle:    target/exit
+#   Black rectangle:    walls [reward = ?]
+#   Grey rectangle:     open space [reward = ?]
+#   Pink oval:          agent/explorer
+#   Green rectangle:    target/exit
 #
 #
 #####################################################
@@ -38,12 +38,12 @@ import numpy as np
 DEMO = False
 SAVE_FILE = False
 FILENAME = 'maze5x5_1'
-CYCLE_FILE_NUM = 0
+CYCLE_FILE_NUM = 100
 CSV_NAME = 'brain_saves/'+FILENAME+'_'+str(CYCLE_FILE_NUM)+'.csv'   
 #possibly suppliment the csv files with a txt file with the agent's specs (alpha, gamma, reward values...)
 
 UNIT =  30              #unit size of squares in the graphical representation
-SPEED = 0.025            #the speed at which the screen renders (refreshrate) in seconds
+SPEED = 0.25            #the speed at which the screen renders (refreshrate) in seconds
 CYCLES = 1             #the number of times the agent will travel through the maze till completion
 
 ALPHA = 0.9             #how heavily the learning algorithm gets changed toward a positive reward (learning rate)
@@ -291,6 +291,7 @@ def RL_program(given_alpha=ALPHA, n_depth=LOOK_AHEAD_DEPTH):
     cycle_numbers = []
     cycle_count = 0
     agentHistory = []
+    time.sleep(5)
     for _ in range(CYCLES):
         steps_to_exit = 0   #number of steps it took for the agent to find the exit during this cycle
         reward_sum = 0      #cycle's reward sum
@@ -313,11 +314,8 @@ def RL_program(given_alpha=ALPHA, n_depth=LOOK_AHEAD_DEPTH):
                 if DRAW_MAZE == True: myMaze.resetAgent()
                 if DRAW_MAZE == True:myMaze.flag.undraw()
             
-            # print('checking q_table after:\n', myAgent.q_table)
-            # time.sleep(1)
             #choose an action given agents current state using just the q-value table
             action = myAgent.choose_action(state) 
-
 
             # #action is an int. need to pass that int to moveAgent to get s', reward and done flag
             new_state, reward, done = myMaze.moveAgent(int(action))
@@ -346,7 +344,7 @@ def RL_program(given_alpha=ALPHA, n_depth=LOOK_AHEAD_DEPTH):
                 break;      #break nesting while True loop1
     
     print(agentHistory)
-    agentMovetoTxt(agentHistory)
+    # agentMovetoTxt(agentHistory)
     return cycle_numbers
 
 def agentMovetoTxt(moveList):
@@ -380,6 +378,9 @@ def singleRunPlot(alpha_to_test, depth_to_test=LOOK_AHEAD_DEPTH):
     plt.ylabel('Steps taken')
     plt.xlabel('Cycle number')
     plt.title('alpha=%s depth=%s runtime=%.2f secs' % (alpha_to_test, depth_to_test, (toc-tic)))
+    plt.show()
+    plt.close()
+
 
 def comparisonAlpha():   
     # Running program once with low alpha and showing graph
@@ -455,24 +456,11 @@ def compareLookahead():
     plt.show()
     plt.close()
 
-def multi_test():
-    t_default = threading.Thread( target=RL_program, args=(0.9, 0))
-    t_lookahead = threading.Thread( target=RL_program, args=(0.9, 2))
-
-    t_default.start()
-    t_lookahead()
-
-    t_default.join()
-    t_lookahead.join()
-
-    print('Completed both threads')
-    
-    
+RL_program(0.9)
 
 
-
-print(RL_program(0.9), 2)
+# print(RL_program(0.9), 2)
 # comparisonAlpha()
 
 # compareLookahead()
-# multi_test()
+# singleRunPlot(0.9, 3)
